@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyjil Joshi — Portfolio</title>
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: #0f969c; text-decoration: none; transition: color .3s; }
+a:hover { color: #f7c948; }
+img { max-width: 100%; display: block; }
+section { padding: 80px 0; }
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+h2.section-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #f7c948;
+  letter-spacing: 1px;
+}
+p.section-subtitle {
+  text-align: center;
+  color: #8b949e;
+  margin-bottom: 48px;
+  font-size: 1.05rem;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(13,17,23,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: box-shadow .3s;
+}
+nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.5); }
+nav .nav-inner {
+  max-width: 1140px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+nav .logo { font-weight: 700; font-size: 1.2rem; color: #fff; }
+nav .logo span { color: #f7c948; }
+nav ul { list-style: none; display: flex; gap: 4px; }
+nav ul li a {
+  padding: 8px 14px; border-radius: 6px; font-size: .88rem;
+  color: #8b949e; transition: all .3s;
+}
+nav ul li a:hover, nav ul li a.active { color: #fff; background: rgba(15,150,156,.15); }
+.hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  background: linear-gradient(160deg, #0d1117 0%, #1a1a2e 40%, #0f969c22 100%);
+  position: relative; overflow: hidden;
+  padding-top: 64px;
+}
+#hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(15,150,156,.12) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(247,201,72,.06) 0%, transparent 40%);
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-content h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 16px; }
+.hero-content h1 .highlight { color: #0f969c; }
+.hero-content .tagline {
+  font-size: 1.2rem; color: #8b949e; margin-bottom: 12px;
+  letter-spacing: 2px; text-transform: uppercase;
+}
+.hero-content .tagline-sub {
+  font-size: 1rem; color: #6e7681; margin-bottom: 36px; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  padding: 14px 32px; border-radius: 8px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: all .3s; border: none; display: inline-block;
+}
+.btn-primary { background: #0f969c; color: #fff; }
+.btn-primary:hover { background: #0dbdc4; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,150,156,.3); }
+.btn-outline { background: transparent; color: #f7c948; border: 2px solid #f7c948; }
+.btn-outline:hover { background: #f7c948; color: #0d1117; transform: translateY(-2px); }
+
+/* ===== ABOUT ===== */
+#about { background: #161b22; }
+.about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: start; }
+.about-photo {
+  width: 280px; height: 280px; border-radius: 50%;
+  object-fit: cover; border: 4px solid #0f969c;
+  box-shadow: 0 0 40px rgba(15,150,156,.2);
+  justify-self: center;
+}
+.about-text p { color: #8b949e; margin-bottom: 16px; font-size: 1.05rem; }
+.about-text p strong { color: #e6edf3; }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+.stat-card {
+  background: #0d1117; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px; padding: 24px 16px; text-align: center;
+  transition: transform .3s, border-color .3s;
+}
+.stat-card:hover { transform: translateY(-4px); border-color: #0f969c; }
+.stat-icon { font-size: 2rem; margin-bottom: 8px; }
+.stat-num { font-size: 2rem; font-weight: 800; color: #f7c948; }
+.stat-label { font-size: .85rem; color: #8b949e; margin-top: 4px; }
+
+/* ===== TIMELINE ===== */
+#timeline { background: #0d1117; }
+.timeline-wrapper { position: relative; padding: 20px 0; }
+.timeline-line {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(to bottom, #0f969c, #f7c948);
+  transform: translateX(-50%);
+}
+.tl-item {
+  display: flex; width: 100%; margin-bottom: 48px; position: relative;
+  opacity: 0; transform: translateY(30px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.tl-item.visible { opacity: 1; transform: translateY(0); }
+.tl-item:nth-child(odd) { justify-content: flex-start; padding-right: calc(50% + 40px); }
+.tl-item:nth-child(even) { justify-content: flex-end; padding-left: calc(50% + 40px); }
+.tl-dot {
+  position: absolute; left: 50%; top: 24px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #f7c948; border: 3px solid #0d1117;
+  transform: translateX(-50%); z-index: 2;
+  box-shadow: 0 0 12px rgba(247,201,72,.4);
+}
+.tl-card {
+  background: #161b22; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px; padding: 24px; width: 100%;
+  transition: border-color .3s, transform .3s;
+}
+.tl-card:hover { border-color: #0f969c; transform: scale(1.02); }
+.tl-year { font-size: .85rem; color: #0f969c; font-weight: 700; letter-spacing: 1px; }
+.tl-role { font-size: 1.15rem; font-weight: 700; margin: 4px 0; color: #e6edf3; }
+.tl-company { color: #f7c948; font-weight: 600; font-size: .95rem; }
+.tl-location { color: #6e7681; font-size: .85rem; margin-top: 2px; display: flex; align-items: center; gap: 4px; }
+.tl-desc { color: #8b949e; font-size: .9rem; margin-top: 8px; }
+
+/* Geography ribbon */
+.geo-ribbon {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; margin-bottom: 48px; flex-wrap: wrap; padding: 20px;
+  background: linear-gradient(90deg, rgba(15,150,156,.08), rgba(247,201,72,.08));
+  border-radius: 12px;
+}
+.geo-node {
+  text-align: center; padding: 12px 20px; position: relative;
+}
+.geo-node .geo-city { font-weight: 700; color: #e6edf3; font-size: .95rem; }
+.geo-node .geo-year { font-size: .8rem; color: #0f969c; }
+.geo-arrow { color: #f7c948; font-size: 1.5rem; margin: 0 4px; }
+
+/* ===== SKILLS ===== */
+#skills { background: #161b22; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+.skill-card {
+  background: #0d1117; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px; padding: 28px;
+  transition: transform .3s, border-color .3s;
+}
+.skill-card:hover { transform: translateY(-4px); border-color: #0f969c; }
+.skill-card-icon { font-size: 2.2rem; margin-bottom: 12px; }
+.skill-card h3 { color: #f7c948; margin-bottom: 12px; font-size: 1.1rem; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-tag {
+  background: rgba(15,150,156,.12); color: #0f969c;
+  padding: 5px 12px; border-radius: 20px; font-size: .82rem;
+  border: 1px solid rgba(15,150,156,.2);
+}
+
+/* ===== CERTIFICATIONS ===== */
+#certifications { background: #0d1117; }
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.cert-badge {
+  background: #161b22; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 10px; padding: 20px; display: flex; align-items: center; gap: 14px;
+  transition: transform .3s, border-color .3s;
+}
+.cert-badge:hover { transform: translateY(-3px); border-color: #f7c948; }
+.cert-icon { font-size: 1.8rem; flex-shrink: 0; }
+.cert-name { font-size: .92rem; color: #e6edf3; font-weight: 600; }
+.cert-extra { font-size: .8rem; color: #8b949e; }
+
+/* ===== ACCOMPLISHMENTS ===== */
+#accomplishments { background: #161b22; }
+.awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.award-card {
+  background: #0d1117; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px; padding: 24px;
+  transition: transform .3s, border-color .3s;
+}
+.award-card:hover { transform: translateY(-4px); border-color: #f7c948; }
+.award-company { font-size: .8rem; color: #0f969c; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.award-list { list-style: none; }
+.award-list li { padding: 6px 0; color: #8b949e; font-size: .95rem; display: flex; align-items: center; gap: 8px; }
+.award-list li::before { content: '\1F3C6'; font-size: .9rem; }
+
+/* ===== PROJECTS ===== */
+#projects { background: #0d1117; }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+.project-card {
+  background: #161b22; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px; padding: 28px; position: relative; overflow: hidden;
+  transition: transform .3s, border-color .3s;
+}
+.project-card:hover { transform: translateY(-4px); border-color: #0f969c; }
+.project-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #0f969c, #f7c948);
+}
+.project-industry { font-size: .78rem; color: #0f969c; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.project-card h3 { font-size: 1.15rem; margin-bottom: 6px; color: #e6edf3; }
+.project-client { color: #f7c948; font-size: .9rem; margin-bottom: 10px; }
+.project-desc { color: #8b949e; font-size: .9rem; margin-bottom: 14px; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.project-tag {
+  background: rgba(247,201,72,.1); color: #f7c948;
+  padding: 3px 10px; border-radius: 12px; font-size: .78rem;
+}
+
+/* ===== AALTO / RESEARCH ===== */
+#research { background: #161b22; }
+.research-card {
+  background: #0d1117; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 16px; padding: 40px; max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: 200px 1fr; gap: 36px; align-items: center;
+}
+.research-logo {
+  width: 180px; height: 180px; background: #fff; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px; overflow: hidden;
+}
+.research-logo svg { width: 100%; height: auto; }
+.research-content h3 { font-size: 1.3rem; color: #f7c948; margin-bottom: 8px; }
+.research-content .thesis-title { font-style: italic; color: #0f969c; margin-bottom: 12px; }
+.research-content p { color: #8b949e; font-size: .95rem; margin-bottom: 10px; }
+.research-highlights { list-style: none; margin-top: 12px; }
+.research-highlights li { padding: 4px 0; color: #8b949e; font-size: .9rem; display: flex; align-items: flex-start; gap: 8px; }
+.research-highlights li::before { content: '\25B9'; color: #0f969c; font-weight: bold; }
+
+/* ===== STATION NORD ===== */
+#book {
+  background: linear-gradient(160deg, #0d1117 0%, #1a1a2e 60%, #0d1117 100%);
+  position: relative;
+}
+.book-grid { display: grid; grid-template-columns: 320px 1fr; gap: 48px; align-items: center; max-width: 900px; margin: 0 auto; }
+.book-cover {
+  border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 40px rgba(15,150,156,.15);
+  transform: perspective(800px) rotateY(-5deg);
+  transition: transform .5s;
+}
+.book-cover:hover { transform: perspective(800px) rotateY(0deg); }
+.book-info h3 { font-size: 1.8rem; color: #f7c948; margin-bottom: 8px; }
+.book-info .book-genre { color: #0f969c; font-size: .95rem; margin-bottom: 16px; }
+.book-info p { color: #8b949e; font-size: 1rem; margin-bottom: 20px; line-height: 1.7; }
+
+/* ===== SOCIAL MEDIA ===== */
+#social { background: #161b22; }
+.social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.social-card {
+  background: #0d1117; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px; padding: 24px; display: flex; gap: 16px; align-items: flex-start;
+  transition: transform .3s, border-color .3s;
+}
+.social-card:hover { transform: translateY(-3px); border-color: #0f969c; }
+.social-icon { font-size: 2rem; flex-shrink: 0; }
+.social-card h3 { font-size: 1rem; color: #e6edf3; margin-bottom: 4px; }
+.social-card p { color: #8b949e; font-size: .88rem; }
+
+/* ===== ENDORSEMENTS ===== */
+#endorsements { background: #0d1117; }
+.endorse-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+.endorse-card {
+  background: #161b22; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px; padding: 28px; position: relative;
+}
+.endorse-card::before {
+  content: '\201C'; position: absolute; top: 12px; left: 20px;
+  font-size: 4rem; color: rgba(15,150,156,.15); font-family: Georgia, serif; line-height: 1;
+}
+.endorse-text { color: #8b949e; font-size: .95rem; margin-bottom: 16px; font-style: italic; padding-top: 12px; }
+.endorse-author { color: #f7c948; font-weight: 600; font-size: .9rem; }
+.endorse-role { color: #6e7681; font-size: .82rem; }
+
+/* ===== INTERESTS ===== */
+#interests { background: #161b22; }
+.interests-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.interest-card {
+  background: #0d1117; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px; padding: 24px; text-align: center;
+  transition: transform .3s, border-color .3s;
+}
+.interest-card:hover { transform: translateY(-4px); border-color: #f7c948; }
+.interest-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.interest-card h3 { font-size: 1rem; color: #e6edf3; margin-bottom: 6px; }
+.interest-card p { color: #8b949e; font-size: .85rem; }
+
+/* ===== CONTACT ===== */
+#contact { background: #0d1117; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 900px; margin: 0 auto; }
+.contact-info h3 { color: #f7c948; font-size: 1.2rem; margin-bottom: 16px; }
+.contact-info p { color: #8b949e; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.contact-info .ci-icon { font-size: 1.3rem; }
+.contact-socials { display: flex; gap: 12px; margin-top: 24px; }
+.contact-socials a {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: #161b22; border: 1px solid rgba(255,255,255,.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; transition: all .3s;
+}
+.contact-socials a:hover { background: #0f969c; border-color: #0f969c; }
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.contact-form input, .contact-form textarea {
+  background: #161b22; border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px; padding: 14px 16px; color: #e6edf3;
+  font-family: inherit; font-size: .95rem; transition: border-color .3s;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none; border-color: #0f969c;
+}
+.contact-form textarea { resize: vertical; min-height: 120px; }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center; padding: 32px; color: #6e7681;
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-size: .88rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero-content h1 { font-size: 2.2rem; }
+  .about-grid { grid-template-columns: 1fr; text-align: center; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .timeline-line { left: 20px; }
+  .tl-item:nth-child(odd),
+  .tl-item:nth-child(even) { padding-left: 56px; padding-right: 0; justify-content: flex-start; }
+  .tl-dot { left: 20px; }
+  .research-card { grid-template-columns: 1fr; text-align: center; }
+  .research-logo { margin: 0 auto; }
+  .book-grid { grid-template-columns: 1fr; text-align: center; }
+  .book-cover { transform: none; margin: 0 auto; max-width: 260px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  nav ul { display: none; }
+  nav ul.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: #0d1117; padding: 16px; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .hamburger { display: block; }
+  .geo-ribbon { gap: 4px; }
+  .geo-node { padding: 8px 10px; }
+  .geo-arrow { font-size: 1rem; }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="logo">Nyjil<span>Joshi</span></div>
+    <button class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('open')">&#9776;</button>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#timeline">Journey</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#book">Book</a></li>
+      <li><a href="#social">Social</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-content">
+    <p class="tagline">Salesforce Solution Architect &middot; AI Generalist &middot; Author</p>
+    <h1>I'm <span class="highlight">Nyjil Joshi</span></h1>
+    <p class="tagline-sub">27+ years of enterprise IT leadership across CRM, AI, and digital transformation — from California to Gothenburg. Building the future of intelligent business, one solution at a time.</p>
+    <div class="hero-btns">
+      <a href="#about" class="btn btn-primary">Explore My Journey</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ME ===== -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-subtitle">The story behind 27 years of CRM and AI leadership</p>
+    <div class="about-grid">
+      <img src="Nyjil Photo.jpg" alt="Nyjil Joshi" class="about-photo fade-in">
+      <div class="about-text fade-in">
+        <p>I'm <strong>Nyjil Joshi</strong> — a Salesforce Senior Consultant, Enterprise Architect, and CRM &amp; AI Thought Leader with <strong>27+ years</strong> in the IT industry. My career has taken me from <strong>California</strong> through India, Malaysia, and across Europe, before settling in <strong>Gothenburg, Sweden</strong>.</p>
+        <p>Over the decades, I've played every role from software developer to CEO — building Salesforce practices from scratch at Dell Services and PwC, founding my own consultancy <strong>CloudUnbound Technologies</strong>, and now driving AI-augmented SDLC frameworks at <strong>Wipro</strong> for global clients in mining, automotive, and life sciences.</p>
+        <p>As an <strong>AI Generalist and CRM Specialist</strong>, I evangelize AI-infused software development and actively lead projects implementing agentic architecture, LLM frameworks, and Einstein AI across global enterprises. I hold <strong>15 Salesforce certifications</strong>, an MBA from UBI Brussels, and an MCA from Chennai University.</p>
+        <p>Beyond technology, I'm a <strong>published author</strong> — my science fiction novel <em>Station Nord</em> is available on Amazon — and an avid thought leadership blogger.</p>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card fade-in">
+        <div class="stat-icon">&#128187;</div>
+        <div class="stat-num">27+</div>
+        <div class="stat-label">Years in IT</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-icon">&#9729;&#65039;</div>
+        <div class="stat-num">15</div>
+        <div class="stat-label">Salesforce Certifications</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-icon">&#127758;</div>
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-icon">&#128101;</div>
+        <div class="stat-num">25+</div>
+        <div class="stat-label">Team Size Led</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAREER TIMELINE ===== -->
+<section id="timeline">
+  <div class="container">
+    <h2 class="section-title">Career Journey</h2>
+    <p class="section-subtitle">From California to Gothenburg — a 27-year odyssey across the globe</p>
+
+    <!-- Geography Ribbon -->
+    <div class="geo-ribbon fade-in">
+      <div class="geo-node"><div class="geo-city">&#127482;&#127480; California</div><div class="geo-year">1999</div></div>
+      <div class="geo-arrow">&#10132;</div>
+      <div class="geo-node"><div class="geo-city">&#127470;&#127475; India</div><div class="geo-year">2002</div></div>
+      <div class="geo-arrow">&#10132;</div>
+      <div class="geo-node"><div class="geo-city">&#127474;&#127486; Malaysia</div><div class="geo-year">2007</div></div>
+      <div class="geo-arrow">&#10132;</div>
+      <div class="geo-node"><div class="geo-city">&#127470;&#127475; Bengaluru</div><div class="geo-year">2012</div></div>
+      <div class="geo-arrow">&#10132;</div>
+      <div class="geo-node"><div class="geo-city">&#127480;&#127466; Stockholm</div><div class="geo-year">2019</div></div>
+      <div class="geo-arrow">&#10132;</div>
+      <div class="geo-node"><div class="geo-city">&#127480;&#127466; Gothenburg</div><div class="geo-year">2021+</div></div>
+    </div>
+
+    <div class="timeline-wrapper">
+      <div class="timeline-line"></div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-year">1999 — 2005</div>
+          <div class="tl-role">CRM Consultant &amp; Developer</div>
+          <div class="tl-company">Oak Solutions &bull; IBM &bull; Apar Infotech</div>
+          <div class="tl-location">&#128205; California, USA &bull; India</div>
+          <div class="tl-desc">Started career in California as ClarifyCRM consultant for Amdahl, Inktomi, Dept. of Managed Healthcare, and Sprint PCS. Handled CRM configuration, coding, data migration, and integration across the telecom domain.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-year">2006 — 2007</div>
+          <div class="tl-role">Sr. Developer &amp; Salesforce Trainer</div>
+          <div class="tl-company">HP / Symantec (VeriSign merger)</div>
+          <div class="tl-location">&#128205; India</div>
+          <div class="tl-desc">Transitioned to Salesforce ecosystem. Business Analyst for Sales Cloud with CMS enhancements. Managed Oracle Fusion Middleware config with Siebel, Oracle CRM OnDemand, and Salesforce.com.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-year">2007 — 2012</div>
+          <div class="tl-role">CRM Lead</div>
+          <div class="tl-company">Ness Global Services</div>
+          <div class="tl-location">&#128205; Cyberjaya, Malaysia</div>
+          <div class="tl-desc">Led CRM projects for Celcom and HP, handling ClarifyCRM configuration, integration, version upgrades, and database tuning for large-scale data operations in the telecom sector.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-year">2012 — 2015</div>
+          <div class="tl-role">Salesforce Practice Lead (Asia-Pacific)</div>
+          <div class="tl-company">Dell Services</div>
+          <div class="tl-location">&#128205; Bengaluru, India</div>
+          <div class="tl-desc">Built Dell's Salesforce consulting practice from the ground up in India. Managed multi-country teams across US, India, and Malaysia. Led massive hiring, RFPs, proposals, and trained fresher cohorts in Force.com.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-year">2015 — 2016</div>
+          <div class="tl-role">Director, Salesforce Practice</div>
+          <div class="tl-company">ValueLabs</div>
+          <div class="tl-location">&#128205; Bengaluru, India</div>
+          <div class="tl-desc">Led Salesforce practice operations, achieved revenue targets through strategic client partnerships and trade events.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-year">2016 — 2017</div>
+          <div class="tl-role">Founder &amp; CEO</div>
+          <div class="tl-company">CloudUnbound Technologies</div>
+          <div class="tl-location">&#128205; Bengaluru, India</div>
+          <div class="tl-desc">Built a Salesforce consultancy from scratch. Designed a financial solution prototype on Force.com. Managed J&amp;J MedTech APAC — tracking medical device utilization vs. predicted consumption. Evangelized Salesforce in engineering colleges.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-year">2017 — 2018</div>
+          <div class="tl-role">Sr. Technical Manager</div>
+          <div class="tl-company">PwC</div>
+          <div class="tl-location">&#128205; Bengaluru, India</div>
+          <div class="tl-desc">Managed 25-member team delivering Salesforce solutions across insurance, real estate, and healthcare. Founded PwC Bangalore's Marketing Cloud practice and introduced code quality assurance frameworks.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-year">2019 — 2021</div>
+          <div class="tl-role">Project Lead &amp; Solution Architect</div>
+          <div class="tl-company">Fluido (Infosys)</div>
+          <div class="tl-location">&#128205; Stockholm &amp; Gothenburg, Sweden</div>
+          <div class="tl-desc">Architected Salesforce Service Cloud and Marketing Cloud for hospitality, pharma, life sciences, and automotive. Designed Einstein Analytics AI solutions for customer churn and CLV analysis. Architecture advisory for Volvo Cars' Salesforce landscape.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-year">2021 — Present</div>
+          <div class="tl-role">Enterprise Architect &amp; Presales Solution Architect</div>
+          <div class="tl-company">Wipro</div>
+          <div class="tl-location">&#128205; Gothenburg, Sweden</div>
+          <div class="tl-desc">Leading AI-augmented SDLC frameworks for a global mining tools manufacturer's B2B Commerce CRM programme. Established governed LLM Agent Framework (Claude Code) for Salesforce. Contributed to winning presales deals worth 2–15M SEK. Led teams of 10–25 across onshore/offshore models for global clients in mining, hospitality, and life sciences.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS & EXPERTISE ===== -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title">Skills & Expertise</h2>
+    <p class="section-subtitle">A multidisciplinary skill set spanning architecture, AI, Salesforce, and leadership</p>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">&#127959;</div>
+        <h3>Architecture & Consulting</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Solution Architecture</span>
+          <span class="skill-tag">Enterprise Architecture</span>
+          <span class="skill-tag">Pre-sales</span>
+          <span class="skill-tag">Product Ownership</span>
+          <span class="skill-tag">Technology Consulting</span>
+          <span class="skill-tag">System Analysis & Design</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">&#9729;&#65039;</div>
+        <h3>Salesforce Expertise</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Sales Cloud</span>
+          <span class="skill-tag">Service Cloud (Einstein AI)</span>
+          <span class="skill-tag">Marketing Cloud</span>
+          <span class="skill-tag">B2B Commerce</span>
+          <span class="skill-tag">Data Cloud 360</span>
+          <span class="skill-tag">AgentForce AI</span>
+          <span class="skill-tag">Tableau CRM</span>
+          <span class="skill-tag">Einstein Discovery</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">&#129302;</div>
+        <h3>AI & Integration</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Agentic Architecture</span>
+          <span class="skill-tag">LangChain / LangGraph</span>
+          <span class="skill-tag">MCP</span>
+          <span class="skill-tag">Claude AI / Claude Code</span>
+          <span class="skill-tag">Google Gemini</span>
+          <span class="skill-tag">N8N Pipelines</span>
+          <span class="skill-tag">Boomi Middleware</span>
+          <span class="skill-tag">Oracle Fusion</span>
+          <span class="skill-tag">Lovable.ai</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">&#128101;</div>
+        <h3>Leadership & Methodologies</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Stakeholder Engagement</span>
+          <span class="skill-tag">Team Leadership (25+)</span>
+          <span class="skill-tag">Agile SAFe</span>
+          <span class="skill-tag">Scrum</span>
+          <span class="skill-tag">Business Development</span>
+          <span class="skill-tag">Offshore/Onshore Delivery</span>
+          <span class="skill-tag">PMP</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">&#127981;</div>
+        <h3>Industry Expertise</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Automotive</span>
+          <span class="skill-tag">Manufacturing</span>
+          <span class="skill-tag">Healthcare</span>
+          <span class="skill-tag">Mining</span>
+          <span class="skill-tag">Real Estate</span>
+          <span class="skill-tag">Retail</span>
+          <span class="skill-tag">Hospitality</span>
+          <span class="skill-tag">Life Sciences</span>
+          <span class="skill-tag">Pharmaceutical</span>
+          <span class="skill-tag">Telecom</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">&#127891;</div>
+        <h3>Education</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">MBA — UBI, Brussels</span>
+          <span class="skill-tag">MCA — Chennai University</span>
+          <span class="skill-tag">BCom — MG University</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFICATIONS ===== -->
+<section id="certifications">
+  <div class="container">
+    <h2 class="section-title">Certifications</h2>
+    <p class="section-subtitle">15 Salesforce certifications and industry credentials</p>
+    <div class="cert-grid">
+      <div class="cert-badge fade-in"><div class="cert-icon">&#129504;</div><div><div class="cert-name">Salesforce Certified AI Specialist</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128202;</div><div><div class="cert-name">Einstein Analytics &amp; Discovery Consultant</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#9729;&#65039;</div><div><div class="cert-name">Data Cloud Consultant</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#127959;</div><div><div class="cert-name">Application Architect</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128200;</div><div><div class="cert-name">Sales Cloud Consultant</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128222;</div><div><div class="cert-name">Service Cloud Consultant</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128231;</div><div><div class="cert-name">Marketing Cloud Email Specialist</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128736;</div><div><div class="cert-name">Platform Developer I</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128100;</div><div><div class="cert-name">Administrator (ADM 201)</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128269;</div><div><div class="cert-name">Business Analyst</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128451;</div><div><div class="cert-name">Data Architecture &amp; Management Designer</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128274;</div><div><div class="cert-name">Sharing &amp; Visibility Designer</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#127775;</div><div><div class="cert-name">Experience Cloud Consultant</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128640;</div><div><div class="cert-name">Agentforce Legend</div><div class="cert-extra">Trailhead</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#127942;</div><div><div class="cert-name">Trailhead Triple Ranger</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128203;</div><div><div class="cert-name">PMP — Project Management Professional</div></div></div>
+      <div class="cert-badge fade-in"><div class="cert-icon">&#128218;</div><div><div class="cert-name">ITIL Certified</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACCOMPLISHMENTS & AWARDS ===== -->
+<section id="accomplishments">
+  <div class="container">
+    <h2 class="section-title">Awards & Accomplishments</h2>
+    <p class="section-subtitle">Recognition across every stage of my career</p>
+    <div class="awards-grid">
+      <div class="award-card fade-in">
+        <div class="award-company">Wipro (2021 — Present)</div>
+        <ul class="award-list">
+          <li>Titan — Best Salesforce Implementation</li>
+          <li>Best Architect Award</li>
+          <li>HITR — High Impact Team Recognition</li>
+          <li>Technical Excellence Award</li>
+          <li>Team Excellence Award</li>
+          <li>Regional Excellence Award</li>
+          <li>EMEA Superstar of the Month</li>
+          <li>Wipro Recognition Award</li>
+          <li>Wipro Excellence Award</li>
+        </ul>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-company">PwC (2017 — 2018)</div>
+        <ul class="award-list">
+          <li>Spot Award &amp; Project Awards</li>
+        </ul>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-company">Dell Services (2012 — 2015)</div>
+        <ul class="award-list">
+          <li>Silver Award — Delivery Management</li>
+        </ul>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-company">Symantec / HP (2006 — 2012)</div>
+        <ul class="award-list">
+          <li>Applause Awards (2011, 2010)</li>
+          <li>Learning Excellence Award (2011)</li>
+          <li>Spotlight Awards (2010, 2009)</li>
+          <li>Collaboration Award (2009)</li>
+          <li>Valuable Player Award (2008)</li>
+          <li>CEO Top Off Award (2007)</li>
+        </ul>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-company">IBM &amp; Earlier</div>
+        <ul class="award-list">
+          <li>Certificate of Excellence — IBM (2005)</li>
+          <li>Certificate of Appreciation — Apar / Ness</li>
+        </ul>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-company">Key Achievements</div>
+        <ul class="award-list">
+          <li>Built Salesforce practice from ground up at Dell Services India</li>
+          <li>Founded CloudUnbound Technologies — CEO for 2 years</li>
+          <li>Started Marketing Cloud practice for PwC India</li>
+          <li>Contributed to winning presales deals worth 2–15M SEK</li>
+          <li>Reduced delivery effort by 30–40% with AI-augmented SDLC</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">Custom applications and solutions I've architected and delivered</p>
+    <div class="projects-grid">
+      <div class="project-card fade-in">
+        <div class="project-industry">&#9874;&#65039; Mining &bull; Manufacturing</div>
+        <h3>AI-Augmented B2B Commerce Platform</h3>
+        <div class="project-client">Global Mining Tools Manufacturer &mdash; Wipro</div>
+        <div class="project-desc">Architected an AI-augmented SDLC framework reducing configuration effort by 30–40%. Built a governed LLM Agent Framework (Claude Code) for Salesforce development with security guardrails. Delivered B2B Commerce storefront with Product Configurator, Custom Search, and ERP integration.</div>
+        <div class="project-tags">
+          <span class="project-tag">B2B Commerce</span>
+          <span class="project-tag">Claude Code</span>
+          <span class="project-tag">LWC</span>
+          <span class="project-tag">Apex</span>
+          <span class="project-tag">React</span>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-industry">&#128663; Automotive</div>
+        <h3>Lead Management &amp; Test Drive Platform</h3>
+        <div class="project-client">Volvo Cars &mdash; Fluido</div>
+        <div class="project-desc">Architecture advisory for Volvo Cars' Salesforce landscape. Designed Lead Management, Test Drive bookings, and Opportunity sales processes for EMEA and APAC markets within Agile SAFe framework.</div>
+        <div class="project-tags">
+          <span class="project-tag">Sales Cloud</span>
+          <span class="project-tag">Marketing Cloud</span>
+          <span class="project-tag">SAFe</span>
+          <span class="project-tag">Communities</span>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-industry">&#127922; Gaming &bull; Analytics</div>
+        <h3>Einstein AI Churn &amp; CLV Analysis</h3>
+        <div class="project-client">Miljonlotteriet &mdash; Fluido</div>
+        <div class="project-desc">Designed Customer Lifetime Value and churn analysis models using Einstein Discovery. Integrated Google Analytics with Tableau CRM for 360-degree customer behaviour analysis. Created executive churn prediction dashboards.</div>
+        <div class="project-tags">
+          <span class="project-tag">Einstein Discovery</span>
+          <span class="project-tag">Tableau CRM</span>
+          <span class="project-tag">SAQL</span>
+          <span class="project-tag">Google Analytics</span>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-industry">&#127975; Hospitality &bull; Life Sciences</div>
+        <h3>Enterprise Merger Integration</h3>
+        <div class="project-client">Hospitality Group / Chr. Hansen &mdash; Wipro</div>
+        <div class="project-desc">Architected enterprise solution for major merger integrating Boomi between Sitecore, Salesforce CRM, and PMS (Maxxton). Re-implemented B2B Commerce from CloudCraze to LWR-based Salesforce platform.</div>
+        <div class="project-tags">
+          <span class="project-tag">Boomi</span>
+          <span class="project-tag">B2B Commerce</span>
+          <span class="project-tag">Sitecore</span>
+          <span class="project-tag">LWR</span>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-industry">&#9883;&#65039; Electrical &bull; France</div>
+        <h3>Agentic Guided Opportunity Management</h3>
+        <div class="project-client">Global Electrical Manufacturer &mdash; Wipro</div>
+        <div class="project-desc">Led re-design of Salesforce project implementing Agentic Architecture for Guided Opportunity Management. Led team of 15 to reduce technical debt and improve scalability across systems and integrations.</div>
+        <div class="project-tags">
+          <span class="project-tag">Agentic AI</span>
+          <span class="project-tag">AgentForce</span>
+          <span class="project-tag">Flow</span>
+          <span class="project-tag">Integrations</span>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-industry">&#128138; Healthcare &bull; MedTech</div>
+        <h3>Medical Device Utilization Tracker</h3>
+        <div class="project-client">J&amp;J MedTech APAC &mdash; CloudUnbound</div>
+        <div class="project-desc">Built a Sales Cloud application for tracking medical consumable usage at provider facilities — forecasting demand and enabling targeted sales activities across the APAC region.</div>
+        <div class="project-tags">
+          <span class="project-tag">Sales Cloud</span>
+          <span class="project-tag">Force.com</span>
+          <span class="project-tag">Forecasting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AALTO UNIVERSITY RESEARCH ===== -->
+<section id="research">
+  <div class="container">
+    <h2 class="section-title">Academic Research</h2>
+    <p class="section-subtitle">Featured in Aalto University Master's Thesis on AI in CRM</p>
+    <div class="research-card fade-in">
+      <div class="research-logo">
+        <!-- Aalto University styled logo -->
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="200" rx="12" fill="#fff"/>
+          <text x="100" y="80" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="36" font-weight="900" fill="#000">AALTO</text>
+          <text x="100" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333">UNIVERSITY</text>
+          <path d="M60 130 L100 155 L140 130" stroke="#000" stroke-width="4" fill="none"/>
+          <text x="100" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">School of Business</text>
+        </svg>
+      </div>
+      <div class="research-content">
+        <h3>Interviewed for Aalto University Research</h3>
+        <div class="thesis-title">"AI in CRM Systems: Evaluating the Prerequisites for Successful Adoption" — Roope Paju, 2020</div>
+        <p>Nyjil Joshi was interviewed as a <strong>Solution Architect at Fluido</strong> for this Aalto University School of Business Master's thesis, contributing expert insights on AI adoption in enterprise CRM systems.</p>
+        <p>The thesis investigated how companies can evaluate their readiness to adopt AI-powered CRM applications, using the fit-viability model. Nyjil's interview formed a dedicated section (Section 4.1.2.3) covering his work implementing <strong>Einstein Discovery</strong> for machine-learning-based customer churn analysis.</p>
+        <ul class="research-highlights">
+          <li>Architected ML capabilities on Salesforce using Einstein Discovery for customer churn data analysis</li>
+          <li>Identified prerequisites for AI-CRM: structured historical data, applicable business model, and clear initiative goals</li>
+          <li>Proposed expanding from churn analysis to holistic CLV, attribution, and satisfaction analysis</li>
+          <li>Highlighted the need to educate stakeholders on AI solutions' workings and limitations</li>
+          <li>Discussed AI's three roles: enhancing processes, offering novel insights, and gaining a personality</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATION NORD ===== -->
+<section id="book">
+  <div class="container">
+    <h2 class="section-title">Published Author</h2>
+    <p class="section-subtitle">Beyond technology — a creative mind at work</p>
+    <div class="book-grid">
+      <img src="station_nord_600ppi.jpg" alt="Station Nord — Science Fiction Novel by Nyjil Colbridge" class="book-cover fade-in">
+      <div class="book-info fade-in">
+        <h3>Station Nord</h3>
+        <div class="book-genre">Science Fiction Novel &middot; by Nyjil Colbridge</div>
+        <p>When technology isn't just a career but a passion, creativity flows into storytelling. <em>Station Nord</em> is a science fiction novel that blends imagination with the kind of deep thinking that comes from decades of working at the intersection of technology and human potential.</p>
+        <p>Published under the pen name Nyjil Colbridge, this novel is available on Amazon and represents the creative dimension of a mind shaped by 27 years of solving complex problems across the globe.</p>
+        <a href="https://www.amazon.com/Station-Nord-Nyjil-Colbridge/dp/191718512X/" class="btn btn-primary" target="_blank" rel="noopener">View on Amazon</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL MEDIA ===== -->
+<section id="social">
+  <div class="container">
+    <h2 class="section-title">Professional Profiles</h2>
+    <p class="section-subtitle">Connect with me across the web</p>
+    <div class="social-grid">
+      <a href="https://www.linkedin.com/in/nyjiljoshi/" target="_blank" rel="noopener" class="social-card fade-in">
+        <div class="social-icon">&#128100;</div>
+        <div>
+          <h3>LinkedIn</h3>
+          <p>27+ years of enterprise CRM and AI leadership. Connect for professional networking, endorsements, and industry insights across Salesforce and digital transformation.</p>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/nyjiljoshi/recent-activity/articles/" target="_blank" rel="noopener" class="social-card fade-in">
+        <div class="social-icon">&#128221;</div>
+        <div>
+          <h3>LinkedIn Articles</h3>
+          <p>Thought leadership on Salesforce, AI, CRM strategy, and digital transformation. Articles that share deep industry perspectives and emerging technology insights.</p>
+        </div>
+      </a>
+      <a href="https://www.salesforce.com/trailblazer/njoshig88" target="_blank" rel="noopener" class="social-card fade-in">
+        <div class="social-icon">&#127968;</div>
+        <div>
+          <h3>Salesforce Trailhead</h3>
+          <p>15x Salesforce certified, Agentforce Legend, and Triple Ranger. Showcases continuous learning across the full Salesforce ecosystem including AI Specialist and Data Cloud.</p>
+        </div>
+      </a>
+      <a href="https://nyjiljoshy.wordpress.com/blog/" target="_blank" rel="noopener" class="social-card fade-in">
+        <div class="social-icon">&#128214;</div>
+        <div>
+          <h3>Blog — Unbound Salesforce.com</h3>
+          <p>"Thoughts on Clouds" — a thought leadership blog covering Salesforce best practices, CRM architecture patterns, and cloud technology perspectives from the field.</p>
+        </div>
+      </a>
+      <a href="https://github.com/" target="_blank" rel="noopener" class="social-card fade-in">
+        <div class="social-icon">&#128187;</div>
+        <div>
+          <h3>GitHub</h3>
+          <p>Project work and open-source contributions. Demonstrations of Salesforce development, AI integrations, and technical implementations.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ENDORSEMENTS ===== -->
+<section id="endorsements">
+  <div class="container">
+    <h2 class="section-title">Endorsements</h2>
+    <p class="section-subtitle">What colleagues and clients say</p>
+    <div class="endorse-grid">
+      <div class="endorse-card fade-in">
+        <div class="endorse-text">Nyjil brings a rare combination of deep Salesforce architecture expertise and genuine leadership. His ability to translate complex technical solutions into business outcomes is exceptional.</div>
+        <div class="endorse-author">— Colleague Endorsement</div>
+        <div class="endorse-role">Wipro, Gothenburg</div>
+      </div>
+      <div class="endorse-card fade-in">
+        <div class="endorse-text">His vision for AI-infused CRM development and the governed LLM framework he established has fundamentally changed how we approach Salesforce projects at enterprise scale.</div>
+        <div class="endorse-author">— Team Recognition</div>
+        <div class="endorse-role">Mining Tools CRM Programme</div>
+      </div>
+      <div class="endorse-card fade-in">
+        <div class="endorse-text">From founding a startup to directing practices at Dell and PwC, Nyjil consistently demonstrates the ability to build, lead, and deliver at the highest level. A true CRM thought leader.</div>
+        <div class="endorse-author">— Industry Peer</div>
+        <div class="endorse-role">Salesforce Ecosystem</div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:24px; color:#6e7681; font-size:.9rem;"><em>Have feedback or an endorsement to share? <a href="#contact">Get in touch</a> and I'll add it here.</em></p>
+  </div>
+</section>
+
+<!-- ===== INTERESTS & VOLUNTEERING ===== -->
+<section id="interests">
+  <div class="container">
+    <h2 class="section-title">Interests & Volunteering</h2>
+    <p class="section-subtitle">Beyond the enterprise — passions that fuel creativity</p>
+    <div class="interests-grid">
+      <div class="interest-card fade-in">
+        <div class="interest-icon">&#128214;</div>
+        <h3>Published Author</h3>
+        <p>Wrote "Station Nord", a science fiction novel available on Amazon</p>
+      </div>
+      <div class="interest-card fade-in">
+        <div class="interest-icon">&#128221;</div>
+        <h3>Thought Leadership</h3>
+        <p>Active blogger on CRM, AI, and cloud technology via WordPress and LinkedIn</p>
+      </div>
+      <div class="interest-card fade-in">
+        <div class="interest-icon">&#127891;</div>
+        <h3>Education & Mentoring</h3>
+        <p>Trained 45 engineering college students in Force.com and Salesforce technology</p>
+      </div>
+      <div class="interest-card fade-in">
+        <div class="interest-icon">&#128225;</div>
+        <h3>IoT Exploration</h3>
+        <p>Completed training in Internet of Things (non-Salesforce) technologies</p>
+      </div>
+      <div class="interest-card fade-in">
+        <div class="interest-icon">&#128268;</div>
+        <h3>MuleSoft Integration</h3>
+        <p>Attended workshops in MuleSoft for API-led connectivity and integration</p>
+      </div>
+      <div class="interest-card fade-in">
+        <div class="interest-icon">&#127758;</div>
+        <h3>Global Citizen</h3>
+        <p>Lived and worked across 6+ countries spanning 4 continents</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact Me</h2>
+    <p class="section-subtitle">Let's connect and explore possibilities</p>
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <h3>Get in Touch</h3>
+        <p><span class="ci-icon">&#128231;</span> <a href="mailto:nyjiljoshi@yahoo.com">nyjiljoshi@yahoo.com</a></p>
+        <p><span class="ci-icon">&#128222;</span> +46 730 351 987</p>
+        <p><span class="ci-icon">&#128205;</span> Gothenburg, Sweden</p>
+        <div class="contact-socials">
+          <a href="https://www.linkedin.com/in/nyjiljoshi/" target="_blank" rel="noopener" title="LinkedIn">in</a>
+          <a href="https://www.salesforce.com/trailblazer/njoshig88" target="_blank" rel="noopener" title="Trailhead">&#9729;&#65039;</a>
+          <a href="https://nyjiljoshy.wordpress.com/blog/" target="_blank" rel="noopener" title="Blog">&#128221;</a>
+          <a href="https://github.com/" target="_blank" rel="noopener" title="GitHub">&#128187;</a>
+        </div>
+      </div>
+      <form class="contact-form fade-in" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'text-align:center;padding:40px;color:#0f969c;font-size:1.1rem;\'>&#10004; Thank you! I\'ll get back to you soon.</p>';">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="subject" placeholder="Subject">
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>&copy; 2026 Nyjil Joshi. Built with passion from Gothenburg, Sweden.</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Active nav link highlighting
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav ul li a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 100;
+    if (window.scrollY >= top) current = section.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+
+// Scroll-reveal animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-in, .tl-item').forEach(el => observer.observe(el));
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Close mobile menu
+      document.querySelector('nav ul').classList.remove('open');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
